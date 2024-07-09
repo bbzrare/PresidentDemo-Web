@@ -7,7 +7,9 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
-
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 
 import { AppComponent } from './app.component';
 import { MyComponent } from './my-component/my-component.component';
@@ -23,6 +25,9 @@ import { MyComponent } from './my-component/my-component.component';
     NzInputModule,
     NzButtonModule,
     NzBreadCrumbModule,
+    NzTableModule,
+    NzIconModule,
+    NzDropDownModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
