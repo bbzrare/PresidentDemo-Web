@@ -24,6 +24,18 @@ export class MyComponent {
     { Presname: 'Adams J Q', Birth: '1767', YrsSery: '4', Deathage: '80', Party: 'Demo-Rep', StateBone: 'Massachusetts' },
     { Presname: 'Adams J', Birth: '1735', YrsSery: '4', Deathage: '90', Party: 'Federalist', StateBone: 'Massachusetts' },
     { Presname: 'Adams J Q', Birth: '1767', YrsSery: '4', Deathage: '80', Party: 'Demo-Rep', StateBone: 'Massachusetts' },
+    { Presname: 'Adams J', Birth: '1735', YrsSery: '4', Deathage: '90', Party: 'Federalist', StateBone: 'Massachusetts' },
+    { Presname: 'Adams J Q', Birth: '1767', YrsSery: '4', Deathage: '80', Party: 'Demo-Rep', StateBone: 'Massachusetts' },
+    { Presname: 'Arthur C A', Birth: '1830', YrsSery: '3', Deathage: '56', Party: 'Republican', StateBone: 'Vermont' },
+    { Presname: 'Adams J Q', Birth: '1767', YrsSery: '4', Deathage: '80', Party: 'Demo-Rep', StateBone: 'Massachusetts' },
+    { Presname: 'Adams J', Birth: '1735', YrsSery: '4', Deathage: '90', Party: 'Federalist', StateBone: 'Massachusetts' },
+    { Presname: 'Adams J Q', Birth: '1767', YrsSery: '4', Deathage: '80', Party: 'Demo-Rep', StateBone: 'Massachusetts' },
+    { Presname: 'Adams J', Birth: '1735', YrsSery: '4', Deathage: '90', Party: 'Federalist', StateBone: 'Massachusetts' },
+    { Presname: 'Adams J Q', Birth: '1767', YrsSery: '4', Deathage: '80', Party: 'Demo-Rep', StateBone: 'Massachusetts' },
+    { Presname: 'Arthur C A', Birth: '1830', YrsSery: '3', Deathage: '56', Party: 'Republican', StateBone: 'Vermont' },
+    { Presname: 'Adams J Q', Birth: '1767', YrsSery: '4', Deathage: '80', Party: 'Demo-Rep', StateBone: 'Massachusetts' },
+    { Presname: 'Adams J', Birth: '1735', YrsSery: '4', Deathage: '90', Party: 'Federalist', StateBone: 'Massachusetts' },
+    { Presname: 'Adams J Q', Birth: '1767', YrsSery: '4', Deathage: '80', Party: 'Demo-Rep', StateBone: 'Massachusetts' },
   ];
   filteredData: any[] = [...this.presidentsData]; // เริ่มต้นด้วยข้อมูลทั้งหมด
 

@@ -12,7 +12,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 
 import { AppComponent } from './app.component';
-import { MyComponent } from './my-component/my-component.component';
+import { MyComponent } from './my-component/Presidentcomponent/my-component.component';
 
 @NgModule({
   declarations: [AppComponent, MyComponent],
