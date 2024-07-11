@@ -15,9 +15,17 @@ import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 
 import { AppComponent } from './app.component';
 import { MyComponent } from './my-component/Presidentcomponent/my-component.component';
+import { AdminPrVpComponent } from './modules/adminprvp/admin-pr-vp/admin-pr-vp.component';
+import { AdminitrationComponent } from './modules/administration/administration/administration.component';
+import { ElectionComponent } from './modules/election/election/election.component';
+import { PreshobbyComponent } from './modules/preshobby/preshobby/preshobby.component';
+import { PresidentComponent } from './modules/president/president/president.component';
+import { PresmarriageComponent } from './modules/presmarriage/presmarriage/presmarriage.component';
+import { StateComponent } from './modules/state/state/state.component';
 
 @NgModule({
-  declarations: [AppComponent, MyComponent],
+  declarations: [AppComponent, MyComponent, AdminPrVpComponent, AdminitrationComponent, ElectionComponent, PreshobbyComponent, PresidentComponent, PresmarriageComponent, StateComponent
+  ],
   imports: [
     BrowserModule,
     FormsModule,
