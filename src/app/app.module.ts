@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -10,6 +10,8 @@ import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
+import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 
 import { AppComponent } from './app.component';
 import { MyComponent } from './my-component/Presidentcomponent/my-component.component';
@@ -28,8 +30,10 @@ import { MyComponent } from './my-component/Presidentcomponent/my-component.comp
     NzTableModule,
     NzIconModule,
     NzDropDownModule,
+    NzPageHeaderModule,
+    NzInputNumberModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, MyComponent]
 })
-export class AppModule {}
+export class AppModule { }

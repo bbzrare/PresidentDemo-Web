@@ -1,98 +1,92 @@
+<!-- my-component.component.html -->
 <div>
     <nz-layout>
         <nz-header>
-            <div class="header">
-                <div class="search-container">
-                    <input nz-input placeholder="Search President..." [(ngModel)]="searchTerm" class="search-input" />
-                    <button nz-button nzType="primary" nzShape="circle" (click)="onSearch()">
-                        <i nz-icon nzType="search"></i>
-                        Search
-                    </button>
-                </div>
-                <div class="button-container">
-                    <button nz-button nzType="default" (click)="setTableTitle('Administration')">Administration</button>
-                    <button nz-button nzType="default" (click)="setTableTitle('AdminPrVp')">AdminPrVp</button>
-                    <button nz-button nzType="default" (click)="setTableTitle('Election')">Election</button>
-                    <button nz-button nzType="default" (click)="setTableTitle('PresHobby')">PresHobby</button>
-                    <button nz-button nzType="default" (click)="setTableTitle('President')">President</button>
-                    <button nz-button nzType="default" (click)="setTableTitle('PresMarriage')">PresMarriage</button>
-                    <button nz-button nzType="default" (click)="setTableTitle('State')">State</button>
-                </div>
+            <ul nz-menu nzTheme="dark" nzMode="horizontal" class="header-menu">
+                <li nz-menu-item (click)="setTableTitle('Administration')">Administration</li>
+                <li nz-menu-item (click)="setTableTitle('AdminPrVp')">AdminPrVp</li>
+                <li nz-menu-item (click)="setTableTitle('Election')">Election</li>
+                <li nz-menu-item (click)="setTableTitle('PresHobby')">PresHobby</li>
+                <li nz-menu-item (click)="setTableTitle('President')">President</li>
+                <li nz-menu-item (click)="setTableTitle('PresMarriage')">PresMarriage</li>
+                <li nz-menu-item (click)="setTableTitle('State')">State</li>
+                <div id="datetime" class="datetime">{{ datetime }}</div>
+            </ul>
+            <div class="example-input">
+                <input nz-input placeholder="Search President" nzSize="default" [(ngModel)]="searchTerm"
+                    (keydown.enter)="onSearch()" />
+                <button nz-button nzType="primary" (click)="onSearch()">
+                    <i nz-icon nzType="search"></i>
+                    Search
+                </button>
+                <button class="botton-margin" nz-button nz-dropdown [nzDropdownMenu]="menu4">
+                    Select
+                    <i nz-icon nzType="down"></i>
+                </button>
+                <nz-dropdown-menu #menu4="nzDropdownMenu">
+                    <ul nz-menu nzMode="horizontal">
+                        <li nz-menu-item (click)="setTableTitle('Administration')">Administration</li>
+                        <li nz-menu-item (click)="setTableTitle('AdminPrVp')">AdminPrVp</li>
+                        <li nz-menu-item (click)="setTableTitle('Election')">Election</li>
+                        <li nz-menu-item (click)="setTableTitle('PresHobby')">PresHobby</li>
+                        <li nz-menu-item (click)="setTableTitle('President')">President</li>
+                        <li nz-menu-item (click)="setTableTitle('PresMarriage')">PresMarriage</li>
+                        <li nz-menu-item (click)="setTableTitle('State')">State</li>
+                    </ul>
+                </nz-dropdown-menu>
             </div>
         </nz-header>
-        <nz-content>
-            <div class="site-layout-content">
-                <h1>{{ tableTitle }}</h1>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Presname</th>
-                            <th>Birth</th>
-                            <th>YrsSery</th>
-                            <th>Deathage</th>
-                            <th>Party</th>
-                            <th>StateBone</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let president of filteredData">
-                            <td>{{ president.Presname }}</td>
-                            <td>{{ president.Birth }}</td>
-                            <td>{{ president.YrsSery }}</td>
-                            <td>{{ president.Deathage }}</td>
-                            <td>{{ president.Party }}</td>
-                            <td>{{ president.StateBone }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </nz-content>
+        <nz-layout class="inner-layout">
+            <nz-content>
+                <div>
+                    <h1 class="header">{{ tableTitle }}</h1>
+                    <nz-table #headerTable [nzPageSize]="50" [nzScroll]="{ y: '700px' }">
+                        <thead>
+                            <tr>
+                                <th>Presname</th>
+                                <th>Birth</th>
+                                <th>YrsSery</th>
+                                <th>Deathage</th>
+                                <th>Party</th>
+                                <th>StateBone</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let president of filteredData">
+                                <td>{{ president.Presname }}</td>
+                                <td>{{ president.Birth }}</td>
+                                <td>{{ president.YrsSery }}</td>
+                                <td>{{ president.Deathage }}</td>
+                                <td>{{ president.Party }}</td>
+                                <td>{{ president.StateBone }}</td>
+                            </tr>
+                        </tbody>
+                    </nz-table>
+                </div>
+            </nz-content>
+        </nz-layout>
     </nz-layout>
 </div>
 
 <style>
-    .search-container {
-        display: flex;
-        align-items: center;
+    .example-input .ant-input {
+        width: 200px;
+        margin: 0 8px 8px 0;
     }
 
-    .search-input {
-        margin-right: 8px;
-    }
-
-    .site-layout-content {
-        min-height: 280px;
-        padding: 24px;
-        text-align: center;
+    .botton-margin {
+        margin-left: 10px;
     }
 
     .header {
-        min-height: 40px;
-        padding: 24px;
-        background: #6088f6;
         text-align: center;
     }
 
-    table {
-        border-collapse: collapse;
-        width: 100%;
-    }
-
-    th,
-    td {
-        border: 1px solid black;
-        text-align: left;
-        padding: 8px;
-    }
-
-    th {
-        background-color: #f2f2f2;
-    }
-
-    .button-container {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        /* ระยะห่างระหว่างปุ่ม */
+    .datetime {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        color: #ffffff;
+        font-size: 16px;
     }
 </style>
