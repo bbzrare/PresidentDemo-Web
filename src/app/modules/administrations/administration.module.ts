@@ -1,7 +1,10 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { AdministrationRoutingModule } from './administration-routing.module';
+import { AdministrationComponent } from './administration/administration.component';
 
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
@@ -14,22 +17,13 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 
-import { AppComponent } from './app.component';
-import { MyComponent } from './my-component/Presidentcomponent/my-component.component';
-
-import { AppRoutingModule } from './app-routing.module';
-//import { administrationModule } from './modules/administration/administration.module';
-
 @NgModule({
-  declarations: [
-    AppComponent,
-    MyComponent, 
-    
-  ],
+  declarations: [AdministrationComponent ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
-    BrowserAnimationsModule,
+    AdministrationRoutingModule,
     NzLayoutModule,
     NzMenuModule,
     NzInputModule,
@@ -40,10 +34,6 @@ import { AppRoutingModule } from './app-routing.module';
     NzDropDownModule,
     NzPageHeaderModule,
     NzInputNumberModule,
-    AppRoutingModule,
-    //administrationModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent, MyComponent]
+  ]
 })
-export class AppModule { }
+export class administrationModule { }
