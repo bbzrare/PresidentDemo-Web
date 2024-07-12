@@ -58,7 +58,6 @@ export class MyComponent implements OnInit {
         president.StateBone.toLowerCase().includes(term)
       );
     }
-    this.searchTerm = '';
   }
   // #endregion ฟังก์ชันสำหรับsearch
 

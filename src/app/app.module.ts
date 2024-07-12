@@ -18,7 +18,7 @@ import { AppComponent } from './app.component';
 import { MyComponent } from './my-component/Presidentcomponent/my-component.component';
 
 import { AppRoutingModule } from './app-routing.module';
-//import { administrationModule } from './modules/administration/administration.module';
+import { administrationModule } from './modules/administrations/administration.module';
 
 @NgModule({
   declarations: [
@@ -41,7 +41,7 @@ import { AppRoutingModule } from './app-routing.module';
     NzPageHeaderModule,
     NzInputNumberModule,
     AppRoutingModule,
-    //administrationModule,
+    administrationModule,
   ],
   providers: [],
   bootstrap: [AppComponent, MyComponent]

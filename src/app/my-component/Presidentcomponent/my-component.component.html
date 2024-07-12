@@ -13,7 +13,7 @@
             </ul>
             <div class="example-input">
                 <input nz-input placeholder="Search President" nzSize="default" [(ngModel)]="searchTerm"
-                    (keydown.enter)="onSearch()" />
+                    (ngModelChange)="onSearch()" />
                 <button nz-button nzType="primary" (click)="onSearch()">
                     <i nz-icon nzType="search"></i>
                     Search
