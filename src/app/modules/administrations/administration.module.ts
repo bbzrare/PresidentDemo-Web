@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AdministrationRoutingModule } from './administration-routing.module';
 import { AdministrationComponent } from './administration/administration.component';
@@ -18,12 +17,11 @@ import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 
 @NgModule({
-  declarations: [AdministrationComponent ],
+  declarations: [AdministrationComponent],
   imports: [
-    BrowserAnimationsModule,
-    BrowserModule,
-    FormsModule,
     AdministrationRoutingModule,
+    CommonModule,
+    FormsModule,
     NzLayoutModule,
     NzMenuModule,
     NzInputModule,
@@ -36,4 +34,4 @@ import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
     NzInputNumberModule,
   ]
 })
-export class administrationModule { }
+export class AdministrationModule { }

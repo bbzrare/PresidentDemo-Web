@@ -44,7 +44,6 @@ export class AdministrationComponent implements OnInit {
         president.YearInaugurated.toLowerCase().includes(term)
       );
     }
-    this.searchTerm = '';
   }
   // #endregion ฟังก์ชันสำหรับsearch
 

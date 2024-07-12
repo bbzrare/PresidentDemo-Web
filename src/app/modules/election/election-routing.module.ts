@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ElectionComponent } from './election/election.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: '', component: ElectionComponent }
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

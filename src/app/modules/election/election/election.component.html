@@ -1,1 +1,86 @@
-<p>election works!</p>
+<div>
+    <nz-layout>
+        <nz-header>
+            <ul nz-menu nzTheme="dark" nzMode="horizontal" class="header-menu">
+                <li nz-menu-item (click)="setTableTitle('Administration')">Administration</li>
+                <li nz-menu-item (click)="setTableTitle('AdminPrVp')">AdminPrVp</li>
+                <li nz-menu-item (click)="setTableTitle('Election')">Election</li>
+                <li nz-menu-item (click)="setTableTitle('PresHobby')">PresHobby</li>
+                <li nz-menu-item (click)="setTableTitle('President')">President</li>
+                <li nz-menu-item (click)="setTableTitle('PresMarriage')">PresMarriage</li>
+                <li nz-menu-item (click)="setTableTitle('State')">State</li>
+                <div id="datetime" class="datetime">{{ datetime }}</div>
+            </ul>
+            <div class="example-input">
+                <input nz-input placeholder="Search President" nzSize="default" [(ngModel)]="searchTerm"
+                    (ngModelChange)="onSearch()" />
+                <button nz-button nzType="primary" (click)="onSearch()">
+                    <i nz-icon nzType="search"></i>
+                    Search
+                </button>
+                <button class="botton-margin" nz-button nz-dropdown [nzDropdownMenu]="menu4">
+                    Select
+                    <i nz-icon nzType="down"></i>
+                </button>
+                <nz-dropdown-menu #menu4="nzDropdownMenu">
+                    <ul nz-menu nzMode="horizontal">
+                        <li nz-menu-item (click)="setTableTitle('Administration')">Administration</li>
+                        <li nz-menu-item (click)="setTableTitle('AdminPrVp')">AdminPrVp</li>
+                        <li nz-menu-item (click)="setTableTitle('Election')">Election</li>
+                        <li nz-menu-item (click)="setTableTitle('PresHobby')">PresHobby</li>
+                        <li nz-menu-item (click)="setTableTitle('President')">President</li>
+                        <li nz-menu-item (click)="setTableTitle('PresMarriage')">PresMarriage</li>
+                        <li nz-menu-item (click)="setTableTitle('State')">State</li>
+                    </ul>
+                </nz-dropdown-menu>
+            </div>
+        </nz-header>
+        <nz-layout class="inner-layout">
+            <nz-content>
+                <div>
+                    <h1 class="header">{{ tableTitle }}</h1>
+                    <nz-table #headerTable [nzPageSize]="50" [nzScroll]="{ y: 'auto' }">
+                        <thead>
+                            <tr>
+                                <th>electionYear</th>
+                                <th>candidate</th>
+                                <th>votes</th>
+                                <th>winnerLoserIndic</th>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let president of filteredData">
+                                <td>{{ president.electionYear }}</td>
+                                <td>{{ president.candidate }}</td>
+                                <td>{{ president.votes }}</td>
+                                <td>{{ president.winnerLoserIndic }}</td>
+                            </tr>
+                        </tbody>
+                    </nz-table>
+                </div>
+            </nz-content>
+        </nz-layout>
+    </nz-layout>
+</div>
+
+<style>
+    .example-input .ant-input {
+        width: 200px;
+        margin: 0 8px 8px 0;
+    }
+
+    .botton-margin {
+        margin-left: 10px;
+    }
+
+    .header {
+        text-align: center;
+    }
+
+    .datetime {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        color: #ffffff;
+        font-size: 16px;
+    }
+</style>

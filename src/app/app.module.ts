@@ -15,16 +15,12 @@ import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 
 import { AppComponent } from './app.component';
-import { MyComponent } from './my-component/Presidentcomponent/my-component.component';
 
 import { AppRoutingModule } from './app-routing.module';
-import { administrationModule } from './modules/administrations/administration.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MyComponent, 
-    
   ],
   imports: [
     BrowserModule,
@@ -41,9 +37,8 @@ import { administrationModule } from './modules/administrations/administration.m
     NzPageHeaderModule,
     NzInputNumberModule,
     AppRoutingModule,
-    administrationModule,
   ],
   providers: [],
-  bootstrap: [AppComponent, MyComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
