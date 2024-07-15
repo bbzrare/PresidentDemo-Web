@@ -3,10 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: ''
-    , redirectTo: ''
-    , pathMatch: 'full'
+    path: '',
+    redirectTo: 'Dash',
+    pathMatch: 'full'
   },
+  { path: 'Dash', loadChildren: () => import('./modules/dash/dash.module').then(m => m.DashModule) },
   { path: 'Administration', loadChildren: () => import('./modules/administrations/administration.module').then(m => m.AdministrationModule) },
   { path: 'Adminprvp', loadChildren: () => import('./modules/adminprvp/admin-pr-vp.module').then(m => m.AdminPrVpModule) },
   { path: 'Election', loadChildren: () => import('./modules/election/election.module').then(m => m.ElectionModule) },

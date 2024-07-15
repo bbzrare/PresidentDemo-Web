@@ -1,9 +1,9 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { HttpClientModule } from '@angular/common/http';
+import { DashRoutingModule } from './dash-routing.module';
+import { DashComponent } from './dash/dash.component';
 
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
@@ -16,19 +16,15 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 
-import { AppComponent } from './app.component';
-
-import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    DashComponent
   ],
   imports: [
-    HttpClientModule,
-    BrowserModule,
+    CommonModule,
+    DashRoutingModule,
     FormsModule,
-    BrowserAnimationsModule,
     NzLayoutModule,
     NzMenuModule,
     NzInputModule,
@@ -39,9 +35,6 @@ import { AppRoutingModule } from './app-routing.module';
     NzDropDownModule,
     NzPageHeaderModule,
     NzInputNumberModule,
-    AppRoutingModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+  ]
 })
-export class AppModule { }
+export class DashModule { }

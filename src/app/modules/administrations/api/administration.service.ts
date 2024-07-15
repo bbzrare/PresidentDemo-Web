@@ -1,18 +1,16 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdministrationService {
+  private apiUrl = 'http://localhost:9003/api/Administrations';
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  // Add your service methods here
-  getAdministrationData() {
-    // This is an example function, replace with your logic
-    return [
-      { id: 1, name: 'Admin 1' },
-      { id: 2, name: 'Admin 2' }
-    ];
+  getAdministrations(): Observable<any> {
+    return this.http.get<any>(this.apiUrl);
   }
 }

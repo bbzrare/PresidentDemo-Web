@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AdministrationService } from '../api/administration.service';
 
 @Component({
   selector: 'app-administration',
@@ -9,48 +10,47 @@ export class AdministrationComponent implements OnInit {
   searchTerm: string = '';
   tableTitle: string = 'Administration';
   datetime: string = '';
-  presidentsData = [
-    { AdminNr: '1', PresName: 'Washington G', YearInaugurated: '1789' },
-    { AdminNr: '2', PresName: 'Washington G', YearInaugurated: '1793' },
-    { AdminNr: '3', PresName: 'Adams J', YearInaugurated: '1797' },
-    { AdminNr: '4', PresName: 'Jefferson T', YearInaugurated: '1801' },
-    { AdminNr: '5', PresName: 'Jefferson T', YearInaugurated: '1805' },
-  ];
-  filteredData: any[] = [...this.presidentsData];
+  presidentsData: any[] = [];
+  filteredData: any[] = [];
 
-  // #region timedate
+  constructor(private AdministrationService: AdministrationService) { }
+
   ngOnInit(): void {
     this.updateDateTime();
     setInterval(() => this.updateDateTime(), 1000);
+    this.loadAdministrations();
+  }
+
+  loadAdministrations(): void {
+    this.AdministrationService.getAdministrations().subscribe(data => {
+      console.log('Data received from API:', data);
+      this.presidentsData = data;
+      this.filteredData = data;
+    }, error => {
+      console.error('Error fetching Administrations:', error);
+    });
   }
 
   updateDateTime(): void {
     const now = new Date();
     this.datetime = now.toLocaleString();
   }
-  // #endregion timedate
 
-  // #region ฟังก์ชันสำหรับsearch
   onSearch(): void {
     console.log('Search term:', this.searchTerm);
     if (this.searchTerm.trim() === '') {
-      // รีเซ็ตหรือโหลดข้อมูลทั้งหมดอีกครั้ง
       this.filteredData = [...this.presidentsData];
     } else {
       const term = this.searchTerm.toLowerCase();
       this.filteredData = this.presidentsData.filter(president =>
-        president.AdminNr.toLowerCase().includes(term) ||
-        president.PresName.toLowerCase().includes(term) ||
-        president.YearInaugurated.toLowerCase().includes(term)
+        president.adminNr.toLowerCase().includes(term) ||
+        president.presName.toString().includes(term) ||
+        president.yearInaugurated.toString().includes(term)
       );
     }
   }
-  // #endregion ฟังก์ชันสำหรับsearch
 
-  // #region ฟังก์ชันสำหรับตั้งค่าชื่อตาราง
   setTableTitle(title: string): void {
     this.tableTitle = title;
   }
-  // #endregion ฟังก์ชันสำหรับตั้งค่าชื่อตาราง
 }
-

@@ -2,13 +2,18 @@
     <nz-layout>
         <nz-header>
             <ul nz-menu nzTheme="dark" nzMode="horizontal" class="header-menu">
-                <li nz-menu-item (click)="setTableTitle('Administration')">Administration</li>
-                <li nz-menu-item (click)="setTableTitle('AdminPrVp')">AdminPrVp</li>
-                <li nz-menu-item (click)="setTableTitle('Election')">Election</li>
-                <li nz-menu-item (click)="setTableTitle('PresHobby')">PresHobby</li>
-                <li nz-menu-item (click)="setTableTitle('President')">President</li>
-                <li nz-menu-item (click)="setTableTitle('PresMarriage')">PresMarriage</li>
-                <li nz-menu-item (click)="setTableTitle('State')">State</li>
+                <li nz-menu-item routerLink="/Administration" routerLinkActive="active">Administration</li>
+                <li nz-menu-item routerLink="/Adminprvp" routerLinkActive="active">
+                    AdminPrVp</li>
+                <li nz-menu-item routerLink="/Election" routerLinkActive="active">
+                    Election</li>
+                <li nz-menu-item routerLink="/Preshobby" routerLinkActive="active">
+                    PresHobby</li>
+                <li nz-menu-item routerLink="/President" routerLinkActive="active">
+                    President</li>
+                <li nz-menu-item routerLink="/Presmarriage" routerLinkActive="active">PresMarriage</li>
+                <li nz-menu-item routerLink="/State" routerLinkActive="active">State
+                </li>
                 <div id="datetime" class="datetime">{{ datetime }}</div>
             </ul>
             <div class="example-input">
@@ -24,13 +29,18 @@
                 </button>
                 <nz-dropdown-menu #menu4="nzDropdownMenu">
                     <ul nz-menu nzMode="horizontal">
-                        <li nz-menu-item (click)="setTableTitle('Administration')">Administration</li>
-                        <li nz-menu-item (click)="setTableTitle('AdminPrVp')">AdminPrVp</li>
-                        <li nz-menu-item (click)="setTableTitle('Election')">Election</li>
-                        <li nz-menu-item (click)="setTableTitle('PresHobby')">PresHobby</li>
-                        <li nz-menu-item (click)="setTableTitle('President')">President</li>
-                        <li nz-menu-item (click)="setTableTitle('PresMarriage')">PresMarriage</li>
-                        <li nz-menu-item (click)="setTableTitle('State')">State</li>
+                        <li nz-menu-item routerLink="/Administration" routerLinkActive="active">Administration</li>
+                        <li nz-menu-item routerLink="/Adminprvp" routerLinkActive="active">
+                            AdminPrVp</li>
+                        <li nz-menu-item routerLink="/Election" routerLinkActive="active">
+                            Election</li>
+                        <li nz-menu-item routerLink="/Preshobby" routerLinkActive="active">
+                            PresHobby</li>
+                        <li nz-menu-item routerLink="/President" routerLinkActive="active">
+                            President</li>
+                        <li nz-menu-item routerLink="/Presmarriage" routerLinkActive="active">PresMarriage</li>
+                        <li nz-menu-item routerLink="/State" routerLinkActive="active">State
+                        </li>
                     </ul>
                 </nz-dropdown-menu>
             </div>
@@ -39,15 +49,15 @@
             <nz-content>
                 <div>
                     <h1 class="header">{{ tableTitle }}</h1>
-                    <nz-table #headerTable [nzPageSize]="50" [nzScroll]="{ y: 'auto' }">
+                    <nz-table #headerTable [nzData]="filteredData" [nzPageSize]="50" [nzScroll]="{ y: 'auto' }">
                         <thead>
                             <tr>
-                                <th>presName</th>
-                                <th>birthYr</th>
-                                <th>yrsServ</th>
-                                <th>deathAge</th>
-                                <th>party</th>
-                                <th>stateBorn</th>
+                                <th>PresName</th>
+                                <th>BirthYr</th>
+                                <th>YrsServ</th>
+                                <th>DeathAge</th>
+                                <th>Party</th>
+                                <th>StateBorn</th>
                         </thead>
                         <tbody>
                             <tr *ngFor="let president of filteredData">
@@ -65,26 +75,3 @@
         </nz-layout>
     </nz-layout>
 </div>
-
-<style>
-    .example-input .ant-input {
-        width: 200px;
-        margin: 0 8px 8px 0;
-    }
-
-    .botton-margin {
-        margin-left: 10px;
-    }
-
-    .header {
-        text-align: center;
-    }
-
-    .datetime {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        color: #ffffff;
-        font-size: 16px;
-    }
-</style>
