@@ -11,7 +11,7 @@
                     PresHobby</li>
                 <li nz-menu-item routerLink="/President" routerLinkActive="active">
                     President</li>
-                <li nz-menu-item routerLink="/Presmarriage" routerLinkActive="active">PresMarriage</li>
+                <li nz-menu-item nzSelected routerLink="/Presmarriage" routerLinkActive="active">PresMarriage</li>
                 <li nz-menu-item routerLink="/State" routerLinkActive="active">State
                 </li>
                 <div id="datetime" class="datetime">{{ datetime }}</div>
@@ -29,22 +29,17 @@
                 </button>
                 <nz-dropdown-menu #menu4="nzDropdownMenu">
                     <ul nz-menu nzMode="horizontal">
-                        <li nz-menu-item routerLink="/Administration" routerLinkActive="active"
-                            (click)="setTableTitle('Administration')">Administration</li>
-                        <li nz-menu-item routerLink="/Adminprvp" routerLinkActive="active"
-                            (click)="setTableTitle('AdminPrVp')">
+                        <li nz-menu-item routerLink="/Administration" routerLinkActive="active">Administration</li>
+                        <li nz-menu-item routerLink="/Adminprvp" routerLinkActive="active">
                             AdminPrVp</li>
-                        <li nz-menu-item routerLink="/Election" routerLinkActive="active"
-                            (click)="setTableTitle('Election')">
+                        <li nz-menu-item routerLink="/Election" routerLinkActive="active">
                             Election</li>
-                        <li nz-menu-item routerLink="/Preshobby" routerLinkActive="active"
-                            (click)="setTableTitle('PresHobby')">
+                        <li nz-menu-item routerLink="/Preshobby" routerLinkActive="active">
                             PresHobby</li>
-                        <li nz-menu-item routerLink="/President" routerLinkActive="active"
-                            (click)="setTableTitle('President')">
+                        <li nz-menu-item routerLink="/President" routerLinkActive="active">
                             President</li>
-                        <li nz-menu-item routerLink="/Presmarriage" routerLinkActive="active"
-                            (click)="setTableTitle('PresMarriage')">PresMarriage</li>
+                        <li nz-menu-item nzSelected routerLink="/Presmarriage" routerLinkActive="active">PresMarriage
+                        </li>
                         <li nz-menu-item routerLink="/State" routerLinkActive="active" (click)="setTableTitle('State')">
                             State
                         </li>
