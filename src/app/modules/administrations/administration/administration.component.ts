@@ -42,13 +42,19 @@ export class AdministrationComponent implements OnInit {
       this.filteredData = [...this.presidentsData];
     } else {
       const term = this.searchTerm.toLowerCase();
-      this.filteredData = this.presidentsData.filter(president =>
-        president.adminNr.toLowerCase().includes(term) ||
-        president.presName.toString().includes(term) ||
-        president.yearInaugurated.toString().includes(term)
-      );
+      this.filteredData = this.presidentsData.filter(president => {
+        const adminNr = president.adminNr ? String(president.adminNr).toLowerCase() : '';
+        const presName = president.presName ? String(president.presName).toLowerCase() : '';
+        const yearInaugurated = president.yearInaugurated ? String(president.yearInaugurated).toLowerCase() : '';
+
+        return adminNr.includes(term) ||
+          presName.includes(term) ||
+          yearInaugurated.includes(term);
+      });
     }
+    console.log('Filtered data:', this.filteredData);
   }
+
 
   setTableTitle(title: string): void {
     this.tableTitle = title;

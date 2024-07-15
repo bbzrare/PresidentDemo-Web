@@ -27,9 +27,10 @@ export class StateComponent implements OnInit {
       this.presidentsData = data;
       this.filteredData = data;
     }, error => {
-      console.error('Error fetching states:', error);
+      console.error('Error fetching States:', error);
     });
   }
+
 
   updateDateTime(): void {
     const now = new Date();
@@ -42,13 +43,19 @@ export class StateComponent implements OnInit {
       this.filteredData = [...this.presidentsData];
     } else {
       const term = this.searchTerm.toLowerCase();
-      this.filteredData = this.presidentsData.filter(president =>
-        president.stateName.toLowerCase().includes(term) ||
-        president.adminEntered.toString().includes(term) ||
-        president.yearEntered.toString().includes(term)
-      );
+      this.filteredData = this.presidentsData.filter(president => {
+        const stateName = president.stateName ? String(president.stateName).toLowerCase() : '';
+        const adminEntered = president.adminEntered ? String(president.adminEntered).toLowerCase() : '';
+        const yearEntered = president.yearEntered ? String(president.yearEntered).toLowerCase() : '';
+
+        return stateName.includes(term) ||
+          adminEntered.includes(term) ||
+          yearEntered.includes(term);
+      });
     }
+    console.log('Filtered data:', this.filteredData);
   }
+
 
   setTableTitle(title: string): void {
     this.tableTitle = title;

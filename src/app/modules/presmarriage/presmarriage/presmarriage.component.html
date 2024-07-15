@@ -52,7 +52,7 @@
                 <div>
                     <h1 class="header">{{ tableTitle }}</h1>
                     <nz-table #headerTable [nzData]="filteredData" [nzPageSize]="50" [nzScroll]="{ y: 'auto' }">
-                        <thead>ss
+                        <thead>
                             <tr>
                                 <th>PresName</th>
                                 <th>SpouseName</th>
@@ -65,7 +65,7 @@
                             <tr *ngFor="let president of filteredData">
                                 <td>{{ president.presName }}</td>
                                 <td>{{ president.spouseName }}</td>
-                                <td>{{ president.PrAge }}</td>
+                                <td>{{ president.prAge }}</td>
                                 <td>{{ president.spAge }}</td>
                                 <td>{{ president.nrChildren }}</td>
                                 <td>{{ president.marYear }}</td>

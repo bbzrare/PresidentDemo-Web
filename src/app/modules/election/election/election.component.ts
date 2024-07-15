@@ -42,13 +42,19 @@ export class ElectionComponent implements OnInit {
       this.filteredData = [...this.presidentsData];
     } else {
       const term = this.searchTerm.toLowerCase();
-      this.filteredData = this.presidentsData.filter(president =>
-        president.electionYear.toLowerCase().includes(term) ||
-        president.candidate.toString().includes(term) ||
-        president.votes.toString().includes(term) ||
-        president.winnerLoserIndic.toString().includes(term)
-      );
+      this.filteredData = this.presidentsData.filter(president => {
+        const electionYear = president.electionYear ? String(president.electionYear).toLowerCase() : '';
+        const candidate = president.candidate ? String(president.candidate).toLowerCase() : '';
+        const votes = president.votes ? String(president.votes).toLowerCase() : '';
+        const winnerLoserIndic = president.winnerLoserIndic ? String(president.winnerLoserIndic).toLowerCase() : '';
+
+        return electionYear.includes(term) ||
+          candidate.includes(term) ||
+          votes.includes(term) ||
+          winnerLoserIndic.includes(term);
+      });
     }
+    console.log('Filtered data:', this.filteredData);
   }
 
   setTableTitle(title: string): void {

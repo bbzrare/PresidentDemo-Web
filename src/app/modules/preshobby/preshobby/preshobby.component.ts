@@ -42,12 +42,17 @@ export class PreshobbyComponent implements OnInit {
       this.filteredData = [...this.presidentsData];
     } else {
       const term = this.searchTerm.toLowerCase();
-      this.filteredData = this.presidentsData.filter(president =>
-        president.presName.toLowerCase().includes(term) ||
-        president.hobby.toString().includes(term) 
-      );
+      this.filteredData = this.presidentsData.filter(president => {
+        const presName = president.presName ? String(president.presName).toLowerCase() : '';
+        const hobby = president.hobby ? String(president.hobby).toLowerCase() : '';
+
+        return presName.includes(term) ||
+          hobby.includes(term);
+      });
     }
+    console.log('Filtered data:', this.filteredData);
   }
+
 
   setTableTitle(title: string): void {
     this.tableTitle = title;
