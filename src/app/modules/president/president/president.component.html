@@ -1,34 +1,64 @@
 <div>
     <nz-layout>
         <nz-header>
-            <ul nz-menu nzTheme="dark" nzMode="horizontal" class="header-menu">
-                <li nz-menu-item routerLink="/Administration" routerLinkActive="active">Administration</li>
-                <li nz-menu-item routerLink="/Adminprvp" routerLinkActive="active">AdminPrVp</li>
-                <li nz-menu-item routerLink="/Election" routerLinkActive="active">Election</li>
-                <li nz-menu-item routerLink="/Preshobby" routerLinkActive="active">PresHobby</li>
-                <li nz-menu-item nzSelected routerLink="/President" routerLinkActive="active">President</li>
-                <li nz-menu-item routerLink="/Presmarriage" routerLinkActive="active">PresMarriage</li>
-                <li nz-menu-item routerLink="/State" routerLinkActive="active">State</li>
-                <div id="datetime" class="datetime">{{ datetime }}</div>
-            </ul>
+            <div>
+                <ul nz-menu nzTheme="dark" nzMode="horizontal" class="header-menu">
+                    <li nz-menu-item routerLink="/Administration" routerLinkActive="active">Administration</li>
+                    <li nz-menu-item routerLink="/Adminprvp" routerLinkActive="active">AdminPrVp</li>
+                    <li nz-menu-item routerLink="/Election" routerLinkActive="active">Election</li>
+                    <li nz-menu-item routerLink="/Preshobby" routerLinkActive="active">PresHobby</li>
+                    <li nz-menu-item nzSelected routerLink="/President" routerLinkActive="active">President</li>
+                    <li nz-menu-item routerLink="/Presmarriage" routerLinkActive="active">PresMarriage</li>
+                    <li nz-menu-item routerLink="/State" routerLinkActive="active">State</li>
+                    <div id="datetime" class="datetime">{{ datetime }}</div>
+                </ul>
+            </div>
             <div class="example-input">
+                <!-- Search All -->
                 <input nz-input placeholder="Search President" nzSize="default" [(ngModel)]="searchTerm"
                     (ngModelChange)="onSearch()" />
                 <button nz-button nzType="primary" (click)="onSearch()" class="botton-marginright">
                     <i nz-icon nzType="search"></i>Search
                 </button>
+                <!-- end Search All -->
+                <!-- From To -->
                 <input nz-input placeholder="From" [(ngModel)]="fromAge" nzSize="default" />
                 <input nz-input placeholder="To" [(ngModel)]="toAge" nzSize="default" />
                 <button nz-button nzType="primary" (click)="applyFilterByRange()">Search</button>
+                <!-- end From To -->
+                <!-- Select Age Range-->
                 <nz-tree-select style="width: 200px; margin-left: 10px;" nzPlaceHolder="Select Age Range"
                     [nzNodes]="ageRangeNodes" [(ngModel)]="selectedAgeRanges" nzMultiple nzCheckable
                     (ngModelChange)="applyFilter($event)">
                 </nz-tree-select>
+                <!-- end Select Age Range-->
+                <!-- DropDown-->
+                <button class="botton-margin" nz-button nz-dropdown [nzDropdownMenu]="menu4">
+                    Select
+                    <i nz-icon nzType="down"></i>
+                </button>
+                <nz-dropdown-menu #menu4="nzDropdownMenu">
+                    <ul nz-menu nzMode="horizontal">
+                        <li nz-menu-item routerLink="/Administration" routerLinkActive="active">Administration</li>
+                        <li nz-menu-item routerLink="/Adminprvp" routerLinkActive="active">
+                            AdminPrVp</li>
+                        <li nz-menu-item routerLink="/Election" routerLinkActive="active">
+                            Election</li>
+                        <li nz-menu-item routerLink="/Preshobby" routerLinkActive="active">
+                            PresHobby</li>
+                        <li nz-menu-item nzSelected routerLink="/President" routerLinkActive="active">
+                            President</li>
+                        <li nz-menu-item routerLink="/Presmarriage" routerLinkActive="active">PresMarriage</li>
+                        <li nz-menu-item routerLink="/State" routerLinkActive="active">State
+                        </li>
+                    </ul>
+                </nz-dropdown-menu>
+                <!-- end DropDown-->
             </div>
         </nz-header>
         <nz-content>
             <div class="table-container">
-                <h1 class="header">{{ tableTitle }}</h1>
+                <h1 class="header-President">{{ tableTitle }}</h1>
                 <nz-table #filterTable [nzData]="filteredData" nzBordered [nzFrontPagination]="false">
                     <thead>
                         <tr>

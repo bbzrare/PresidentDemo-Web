@@ -158,7 +158,7 @@ export class PresidentComponent implements OnInit {
       return age >= from && age <= to;
     });
   }
-
+  // #region function for กำหนดตัวTable
   initColumns(): void {
     this.listOfColumns = [
       {
@@ -239,7 +239,7 @@ export class PresidentComponent implements OnInit {
       {
         name: 'Age Range',
         sortOrder: null,
-        sortFn: null,
+        sortFn: (a: President, b: President) => a.birthYr - b.birthYr,
         sortDirections: ['ascend', 'descend', null],
         filterMultiple: true,
         listOfFilter: this.getAgeRanges(), // Initialize with age range filters
@@ -253,6 +253,7 @@ export class PresidentComponent implements OnInit {
       },
     ];
   }
+  // #endregion function for กำหนดตัวTable
 
   // #region function for กำหนดตัวFilter
   getAgeRanges(): NzTableFilterList {

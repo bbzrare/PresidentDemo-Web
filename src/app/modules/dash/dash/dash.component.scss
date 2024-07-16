@@ -1,0 +1,100 @@
+/* Global styles */
+body,
+html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 64px);
+    /* Adjust for header height */
+    background: linear-gradient(to bottom right, rgba(0, 123, 255, 0.8), rgba(164, 191, 226, 0.8)), url('https://example.com/background.jpg') no-repeat center center;
+    background-size: cover;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    animation: fadeIn 2s ease-in-out;
+}
+
+h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    animation: slideInFromLeft 1s ease-out;
+}
+
+p {
+    font-size: 24px;
+    margin-bottom: 40px;
+    color: #fff;
+    /* Ensure the text color is white */
+    animation: slideInFromRight 1s ease-out;
+}
+
+.main-button {
+    padding: 15px 30px;
+    font-size: 18px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    animation: fadeInUp 1s ease-out;
+}
+
+.main-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Keyframes for animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInFromLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInFromRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
