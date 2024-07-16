@@ -1,8 +1,8 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
 import { HttpClientModule } from '@angular/common/http';
 
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
@@ -15,9 +15,9 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
+import { NzTreeSelectModule } from 'ng-zorro-antd/tree-select';
 
 import { AppComponent } from './app.component';
-
 import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
@@ -40,8 +40,11 @@ import { AppRoutingModule } from './app-routing.module';
     NzPageHeaderModule,
     NzInputNumberModule,
     AppRoutingModule,
+    NzTreeSelectModule,
   ],
-  providers: [],
+  providers: [
+    { provide: NZ_I18N, useValue: en_US } // กำหนดภาษาที่นี่ เช่น { provide: NZ_I18N, useValue: th_TH }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

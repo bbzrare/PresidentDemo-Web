@@ -15,6 +15,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
+import { NzTreeSelectModule } from 'ng-zorro-antd/tree-select';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
     NzDropDownModule,
     NzPageHeaderModule,
     NzInputNumberModule,
+    NzTreeSelectModule
   ]
 })
 export class PresidentModule { }

@@ -33,9 +33,51 @@ export class PresidentComponent implements OnInit {
   presidentsData: President[] = [];
   filteredData: President[] = [];
   listOfColumns: ColumnItem[] = [];
+  selectedAgeRanges: string[] = []; // To store selected age ranges
+
+  //#region Example age ranges
+  ageRangeNodes = [
+    {
+      title: '1800-1849',
+      key: '1800-1849',
+      children: [
+        { title: '1800-1809', key: '1800-1809' },
+        { title: '1810-1819', key: '1810-1819' },
+        { title: '1820-1829', key: '1820-1829' },
+        { title: '1830-1839', key: '1830-1839' },
+        { title: '1840-1849', key: '1840-1849' }
+      ]
+    },
+    {
+      title: '1850-1899',
+      key: '1850-1899',
+      children: [
+      ]
+    },
+    {
+      title: '1900-1949',
+      key: '1900-1949',
+      children: [
+      ]
+    },
+    {
+      title: '1950-1999',
+      key: '1950-1999',
+      children: [
+      ]
+    },
+    {
+      title: '2000-2049',
+      key: '2000-2049',
+      children: [
+      ]
+    }
+  ];
+  //#endregion Example age ranges
 
   constructor(private Presidentservice: PresidentService) { }
 
+  // #region Time
   ngOnInit(): void {
     this.updateDateTime();
     setInterval(() => this.updateDateTime(), 1000);
@@ -45,7 +87,6 @@ export class PresidentComponent implements OnInit {
 
   loadPresidents(): void {
     this.Presidentservice.getPresidents().subscribe(data => {
-      console.log('Data received from API:', data);
       this.presidentsData = data;
       this.filteredData = data;
     }, error => {
@@ -57,9 +98,10 @@ export class PresidentComponent implements OnInit {
     const now = new Date();
     this.datetime = now.toLocaleString();
   }
+  // #endregion Time
 
+  // #region Search.
   onSearch(): void {
-    console.log('Search term:', this.searchTerm);
     if (this.searchTerm.trim() === '') {
       this.filteredData = [...this.presidentsData];
     } else {
@@ -80,9 +122,20 @@ export class PresidentComponent implements OnInit {
           stateBorn.includes(term);
       });
     }
-    console.log('Filtered data:', this.filteredData);
   }
+  // #endregion Search.
 
+  // #region FilterของAgerange
+  filterAgeRanges(list: string[], item: President): boolean {
+    const age = item.birthYr + item.deathAge;
+    return list.some(value => {
+      const [min, max] = value.split('-').map(num => parseInt(num, 10));
+      return age >= min && age <= max;
+    });
+  }
+  // #endregion FilterของAgerange
+
+  // #region function for กำหนดตัวTable
   initColumns(): void {
     this.listOfColumns = [
       {
@@ -100,24 +153,12 @@ export class PresidentComponent implements OnInit {
         sortFn: (a: President, b: President) => a.birthYr - b.birthYr,
         sortDirections: ['ascend', 'descend', null],
         filterMultiple: true,
-        listOfFilter: [
-          { text: '1732', value: '1732' },
-          { text: '1735', value: '1735' },
-          { text: '1743', value: '1743' },
-          { text: '1751', value: '1751' },
-          { text: '1758', value: '1758' },
-          { text: '1767', value: '1767' }
-        ],
+        listOfFilter: this.getBrithYr(),
         filterFn: (list: string[], item: President) => {
-          const birthYear = item.birthYr.toString();
+          const age = item.birthYr;
           return list.some(value => {
-            if (value === '1732') return birthYear.startsWith('1732');
-            if (value === '1735') return birthYear.startsWith('1735');
-            if (value === '1743') return birthYear.startsWith('1743');
-            if (value === '1751') return birthYear.startsWith('1751');
-            if (value === '1758') return birthYear.startsWith('1758');
-            if (value === '1767') return birthYear.startsWith('1767');
-            return false;
+            const [min, max] = value.split('-').map(num => parseInt(num, 10));
+            return age >= min && age <= max;
           });
         }
       },
@@ -127,8 +168,14 @@ export class PresidentComponent implements OnInit {
         sortFn: (a: President, b: President) => a.yrsServ - b.yrsServ,
         sortDirections: ['ascend', 'descend', null],
         filterMultiple: true,
-        listOfFilter: [],
-        filterFn: null
+        listOfFilter: this.getYrsServ(),
+        filterFn: (list: string[], item: President) => {
+          const age = item.yrsServ;
+          return list.some(value => {
+            const [min, max] = value.split('-').map(num => parseInt(num, 10));
+            return age >= min && age <= max;
+          });
+        }
       },
       {
         name: 'DeathAge',
@@ -136,8 +183,14 @@ export class PresidentComponent implements OnInit {
         sortFn: (a: President, b: President) => a.deathAge - b.deathAge,
         sortDirections: ['ascend', 'descend', null],
         filterMultiple: true,
-        listOfFilter: [],
-        filterFn: null
+        listOfFilter: this.getDeathAge(),
+        filterFn: (list: string[], item: President) => {
+          const age = item.deathAge;
+          return list.some(value => {
+            const [min, max] = value.split('-').map(num => parseInt(num, 10));
+            return age >= min && age <= max;
+          });
+        }
       },
       {
         name: 'Party',
@@ -156,9 +209,77 @@ export class PresidentComponent implements OnInit {
         filterMultiple: true,
         listOfFilter: [],
         filterFn: null
+      },
+      {
+        name: 'Age Range',
+        sortOrder: null,
+        sortFn: null,
+        sortDirections: ['ascend', 'descend', null],
+        filterMultiple: true,
+        listOfFilter: this.getAgeRanges(), // Initialize with age range filters
+        filterFn: (list: string[], item: President) => {
+          const age = item.birthYr + item.deathAge;
+          return list.some(value => {
+            const [min, max] = value.split('-').map(num => parseInt(num, 10));
+            return age >= min && age <= max;
+          });
+        }
       }
     ];
   }
+  // #endregion function for กำหนดตัวTable
+
+  // #region function for กำหนดตัวFilter
+  getAgeRanges(): NzTableFilterList {
+    const ranges: NzTableFilterList = [];
+    for (let year = 1800; year <= 2000; year += 50) {
+      ranges.push({ text: `${year}-${year + 49}`, value: `${year}-${year + 49}` });
+    }
+    return ranges;
+  }
+
+  getBrithYr(): NzTableFilterList {
+    const ranges: NzTableFilterList = [];
+    for (let year = 1730; year <= 1930; year += 1) {
+      ranges.push({ text: `${year}`, value: `${year}-${year}` });
+    }
+    return ranges;
+  }
+
+  getDeathAge(): NzTableFilterList {
+    const ranges: NzTableFilterList = [];
+    for (let year = 45; year <= 90; year += 1) {
+      ranges.push({ text: `${year}`, value: `${year}-${year}` });
+    }
+    return ranges;
+  }
+
+  getYrsServ(): NzTableFilterList {
+    const ranges: NzTableFilterList = [];
+    for (let year = 0; year <= 12; year += 1) {
+      ranges.push({ text: `${year}`, value: `${year}-${year}` });
+    }
+    return ranges;
+  }
+  // #endregion function for กำหนดตัวFilter
+
+  // #region function for applyFilter
+  applyFilter(selectedAgeRanges: string[]): void {
+    this.selectedAgeRanges = selectedAgeRanges;
+    if (this.selectedAgeRanges.length === 0) {
+      this.filteredData = [...this.presidentsData];
+      return;
+    }
+
+    this.filteredData = this.presidentsData.filter(president => {
+      const age = president.birthYr + president.deathAge;
+      return this.selectedAgeRanges.some(value => {
+        const [min, max] = value.split('-').map(num => parseInt(num, 10));
+        return age >= min && age <= max;
+      });
+    });
+  }
+  // #endregion function for applyFilter
 
   setTableTitle(title: string): void {
     this.tableTitle = title;

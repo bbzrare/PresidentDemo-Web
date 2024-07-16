@@ -2,7 +2,7 @@
 @import "~ng-zorro-antd/ng-zorro-antd.min.css";
 
 .example-input .ant-input {
-    width: 200px;
+    width: 150px;
     margin: 0 8px 8px 0;
 }
 
@@ -24,4 +24,16 @@
     right: 10px;
     color: #ffffff;
     font-size: 16px;
+}
+
+.age-range-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.age-range-buttons button {
+    margin-bottom: 5px;
 }
