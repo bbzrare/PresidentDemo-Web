@@ -14,23 +14,12 @@
             <div class="example-input">
                 <input nz-input placeholder="Search President" nzSize="default" [(ngModel)]="searchTerm"
                     (ngModelChange)="onSearch()" />
-                <button nz-button nzType="primary" (click)="onSearch()">
+                <button nz-button nzType="primary" (click)="onSearch()" class="botton-marginright">
                     <i nz-icon nzType="search"></i>Search
                 </button>
-                <button class="botton-margin" nz-button nz-dropdown [nzDropdownMenu]="menu4">
-                    Select <i nz-icon nzType="down"></i>
-                </button>
-                <nz-dropdown-menu #menu4="nzDropdownMenu">
-                    <ul nz-menu nzMode="horizontal">
-                        <li nz-menu-item routerLink="/Administration" routerLinkActive="active">Administration</li>
-                        <li nz-menu-item routerLink="/Adminprvp" routerLinkActive="active">AdminPrVp</li>
-                        <li nz-menu-item routerLink="/Election" routerLinkActive="active">Election</li>
-                        <li nz-menu-item routerLink="/Preshobby" routerLinkActive="active">PresHobby</li>
-                        <li nz-menu-item nzSelected routerLink="/President" routerLinkActive="active">President</li>
-                        <li nz-menu-item routerLink="/Presmarriage" routerLinkActive="active">PresMarriage</li>
-                        <li nz-menu-item routerLink="/State" routerLinkActive="active">State</li>
-                    </ul>
-                </nz-dropdown-menu>
+                <input nz-input placeholder="From" [(ngModel)]="fromAge" nzSize="default" />
+                <input nz-input placeholder="To" [(ngModel)]="toAge" nzSize="default" />
+                <button nz-button nzType="primary" (click)="applyFilterByRange()">Search</button>
                 <nz-tree-select style="width: 200px; margin-left: 10px;" nzPlaceHolder="Select Age Range"
                     [nzNodes]="ageRangeNodes" [(ngModel)]="selectedAgeRanges" nzMultiple nzCheckable
                     (ngModelChange)="applyFilter($event)">

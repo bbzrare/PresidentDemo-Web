@@ -36,7 +36,7 @@ import { NzTreeSelectModule } from 'ng-zorro-antd/tree-select';
     NzDropDownModule,
     NzPageHeaderModule,
     NzInputNumberModule,
-    NzTreeSelectModule
+    NzTreeSelectModule,
   ]
 })
 export class PresidentModule { }
