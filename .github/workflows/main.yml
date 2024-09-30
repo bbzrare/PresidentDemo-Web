@@ -1,21 +1,34 @@
-name: Pull Request to Specific Branch
+name: PR Target Branch and Assign Reviewers
 
 on:
   pull_request:
     branches:
-      - master
+      - master  # ระบุชื่อ branch เป้าหมายที่คุณต้องการ เช่น main, develop
 
 jobs:
-  build:
+  assign-reviewer:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout target branch
         uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.base.ref }}
 
-      # Add other steps here to test, lint, or build your project
+      - name: Determine the reviewer based on source branch name
+        id: set-reviewer
+        run: |
+          if [[ "${{ github.event.pull_request.head.ref }}" == *"out"* ]]; then
+            echo "::set-output name=reviewer::Kriwich_o"
+          else
+            echo "::set-output name=none"
+          fi
 
-      - name: Run tests
-        run: echo "Running tests for the pull request."
-
-      # Add more steps as needed, for example, to deploy or notify a team
+      - name: Add reviewer to the pull request
+        if: steps.set-reviewer.outputs.reviewer != 'none'
+        run: |
+          curl -s -X POST \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/requested_reviewers \
+            -d '{"reviewers":["${{ steps.set-reviewer.outputs.reviewer }}"]}'
