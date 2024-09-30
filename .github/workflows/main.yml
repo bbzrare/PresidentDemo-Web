@@ -1,0 +1,21 @@
+name: Pull Request to Specific Branch
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Add other steps here to test, lint, or build your project
+
+      - name: Run tests
+        run: echo "Running tests for the pull request."
+
+      # Add more steps as needed, for example, to deploy or notify a team
