@@ -19,7 +19,7 @@ jobs:
         id: set-reviewer
         run: |
           if [[ "${{ github.event.pull_request.head.ref }}" == *"out"* ]]; then
-            echo "::set-output name=reviewer::bbzrare"
+            echo "::set-output name=reviewer::Theerapat-dev"
           else
             echo "::set-output name=none"
           fi
