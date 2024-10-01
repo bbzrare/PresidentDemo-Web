@@ -4,6 +4,8 @@ on:
   pull_request:
     branches:
       - master  # ระบุชื่อ branch เป้าหมายที่คุณต้องการ เช่น main, develop
+      - development
+      - release-development
 
 jobs:
   assign-reviewer:
